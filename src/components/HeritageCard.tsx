@@ -1,6 +1,6 @@
 "use client";
 
-import { Heart, MapPin, Star, Users, Clock, Ticket } from "lucide-react";
+import { Heart, MapPin, Star, Clock, Ticket } from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -162,7 +162,7 @@ export function HeritageCard({
                             <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                             <span className="font-medium">{place.rating}</span>
                             <span className="text-white/80">
-                                ({formatNumber(place.visitCount)} pengunjung)
+                                ({formatNumber(place.visitCount)} visitors)
                             </span>
                         </div>
                     </div>
@@ -206,9 +206,7 @@ export function HeritageCard({
                                 <p className="font-medium">
                                     {formatCurrency(place.ticketPrice.local)}
                                 </p>
-                                <p className="text-muted-foreground">
-                                    Domestik
-                                </p>
+                                <p className="text-muted-foreground">Local</p>
                             </div>
                         </div>
                     </div>
@@ -232,7 +230,7 @@ export function HeritageCard({
                                         variant="outline"
                                         className="text-xs"
                                     >
-                                        +{place.highlights.length - 2} lainnya
+                                        +{place.highlights.length - 2} more
                                     </Badge>
                                 )}
                             </div>

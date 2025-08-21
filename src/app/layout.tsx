@@ -6,11 +6,11 @@ import { Header } from "@/components/Header";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-    title: "Heritage Tracker - Jelajahi Warisan Malaysia",
+    title: "Heritage Tracker - Explore Malaysia's Heritage",
     description:
-        "Temukan dan kunjungi tempat-tempat bersejarah di Malaysia. Tandai tempat yang sudah dikunjungi dan jelajahi warisan budaya Malaysia yang kaya.",
+        "Discover and visit historical places in Malaysia. Mark visited places and explore Malaysia's rich cultural heritage.",
     keywords:
-        "heritage, malaysia, kuil, istana, museum, wisata sejarah, budaya malaysia, melaka, kuala lumpur",
+        "heritage, malaysia, temples, palaces, museums, historical tourism, malaysian culture, melaka, kuala lumpur",
 };
 
 export default function RootLayout({
@@ -19,7 +19,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="id">
+        <html lang="en">
             <body className={inter.className}>
                 <div className="min-h-screen bg-background">
                     <Header />

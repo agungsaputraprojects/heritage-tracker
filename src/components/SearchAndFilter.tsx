@@ -7,13 +7,13 @@ import { Badge } from "@/components/ui/badge";
 import { useHeritageStoreHydrated } from "@/store/useHeritageStore";
 
 const categories = [
-    { value: "all", label: "Semua", icon: "🏛️" },
-    { value: "temple", label: "Kuil/Candi", icon: "🛕" },
-    { value: "palace", label: "Istana", icon: "🏰" },
-    { value: "fort", label: "Benteng", icon: "🗿" },
-    { value: "monument", label: "Monumen", icon: "🗿" },
-    { value: "site", label: "Situs", icon: "🏞️" },
-    { value: "museum", label: "Museum", icon: "🏛️" },
+    { value: "all", label: "All", icon: "🏛️" },
+    { value: "temple", label: "Temples", icon: "🛕" },
+    { value: "palace", label: "Palaces", icon: "🏰" },
+    { value: "fort", label: "Forts", icon: "🗿" },
+    { value: "monument", label: "Monuments", icon: "🗿" },
+    { value: "site", label: "Sites", icon: "🏞️" },
+    { value: "museum", label: "Museums", icon: "🏛️" },
 ];
 
 export function SearchAndFilter() {
@@ -52,7 +52,7 @@ export function SearchAndFilter() {
                 <div className="relative">
                     <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5 transition-colors group-focus-within:text-orange-500" />
                     <Input
-                        placeholder="Cari tempat bersejarah, kota, atau negeri..."
+                        placeholder="Search historical places, cities, or states..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         className="pl-12 pr-12 h-12 text-base rounded-xl border-2 border-gray-200 focus:border-orange-400 focus:ring-2 focus:ring-orange-100 transition-all duration-200 bg-white/80 backdrop-blur-sm"
@@ -75,7 +75,7 @@ export function SearchAndFilter() {
                 <div className="flex items-center gap-3">
                     <div className="flex items-center gap-2 text-sm font-medium text-gray-600">
                         <Filter className="h-4 w-4" />
-                        <span>Kategori:</span>
+                        <span>Categories:</span>
                     </div>
                 </div>
 
@@ -108,7 +108,7 @@ export function SearchAndFilter() {
                 <div className="flex items-center gap-3 flex-wrap p-4 bg-gradient-to-r from-orange-50 to-red-50 dark:from-orange-950/20 dark:to-red-950/20 rounded-xl border border-orange-200 dark:border-orange-800">
                     <span className="text-sm font-medium text-gray-600 flex items-center gap-2">
                         <Filter className="h-4 w-4" />
-                        Filter aktif:
+                        Active filters:
                     </span>
 
                     <div className="flex flex-wrap gap-2">
@@ -118,7 +118,7 @@ export function SearchAndFilter() {
                                 className="gap-2 pl-3 pr-2 py-1.5 bg-white/80 backdrop-blur-sm border border-orange-200 text-orange-700"
                             >
                                 <Search className="h-3 w-3" />
-                                <span>"{searchQuery}"</span>
+                                <span>&quot;{searchQuery}&quot;</span>
                                 <Button
                                     variant="ghost"
                                     size="sm"
@@ -171,7 +171,7 @@ export function SearchAndFilter() {
                             }}
                             className="h-8 text-xs text-orange-600 hover:text-orange-700 hover:bg-orange-100 rounded-full px-3"
                         >
-                            Hapus semua
+                            Clear all
                         </Button>
                     )}
                 </div>

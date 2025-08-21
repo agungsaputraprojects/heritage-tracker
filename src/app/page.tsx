@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useRef, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Grid, List, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -18,7 +18,7 @@ export default function HomePage() {
     const { getFilteredPlaces, getRandomPlace, isHydrated } =
         useHeritageStoreHydrated();
 
-    // Ref untuk scroll target (bagian hasil)
+    // Ref for scroll target (results section)
     const resultsRef = useRef<HTMLElement>(null);
 
     const filteredPlaces = isHydrated ? getFilteredPlaces() : [];
@@ -30,7 +30,7 @@ export default function HomePage() {
     const currentPlaces = filteredPlaces.slice(startIndex, endIndex);
 
     // Reset to page 1 when search results change
-    useMemo(() => {
+    useEffect(() => {
         setCurrentPage(1);
     }, [filteredPlaces.length]);
 
@@ -41,16 +41,16 @@ export default function HomePage() {
         if (randomPlace) {
             window.location.href = `/place/${randomPlace.id}`;
         } else {
-            alert("Anda sudah mengunjungi semua tempat! 🎉");
+            alert("You've visited all places! 🎉");
         }
     };
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
 
-        // Scroll ke bagian hasil, bukan ke paling atas
+        // Scroll to results section, not to the top
         if (resultsRef.current) {
-            const yOffset = -20; // Offset 20px dari atas bagian hasil
+            const yOffset = -20; // 20px offset from top of results section
             const y =
                 resultsRef.current.getBoundingClientRect().top +
                 window.pageYOffset +
@@ -69,15 +69,15 @@ export default function HomePage() {
             <section className="text-center space-y-4">
                 <div className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-100 to-red-100 dark:from-orange-950 dark:to-red-950 px-4 py-2 rounded-full text-sm font-medium">
                     <Sparkles className="h-4 w-4 text-orange-600" />
-                    Jelajahi Warisan Budaya Malaysia
+                    Explore Malaysia&apos;s Cultural Heritage
                 </div>
-                <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-orange-600 via-red-600 to-purple-600 bg-clip-text text-transparent">
+                <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-orange-600 via-red-600 to-purple-600 bg-clip-text text-transparent md:h-20 h-16">
                     Heritage Tracker
                 </h1>
                 <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-                    Temukan, kunjungi, dan tandai tempat-tempat bersejarah di
-                    Malaysia. Mulai perjalanan Anda menjelajahi warisan budaya
-                    Malaysia yang kaya.
+                    Discover, visit, and mark historical places in Malaysia.
+                    Start your journey exploring Malaysia&apos;s rich cultural
+                    heritage.
                 </p>
             </section>
 
@@ -89,18 +89,18 @@ export default function HomePage() {
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                         <Sparkles className="h-5 w-5 text-orange-600" />
-                        Fitur Menyenangkan
+                        Fun Features
                     </CardTitle>
                 </CardHeader>
                 <CardContent>
                     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                         <div>
                             <h3 className="font-semibold mb-1">
-                                Tidak tahu mau ke mana?
+                                Don&apos;t know where to go?
                             </h3>
                             <p className="text-sm text-muted-foreground">
-                                Biarkan kami menyarankan tempat bersejarah yang
-                                belum Anda kunjungi secara acak!
+                                Let us suggest a historical place you
+                                haven&apos;t visited yet, chosen at random!
                             </p>
                         </div>
                         <Button
@@ -109,7 +109,7 @@ export default function HomePage() {
                             className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 disabled:opacity-50 flex-shrink-0"
                         >
                             <Sparkles className="h-4 w-4 mr-2" />
-                            {isHydrated ? "Saran Tempat Acak" : "Loading..."}
+                            {isHydrated ? "Random Suggestion" : "Loading..."}
                         </Button>
                     </div>
                 </CardContent>
@@ -118,7 +118,7 @@ export default function HomePage() {
             {/* Search and Filter */}
             <SearchAndFilter />
 
-            {/* Results Section - Target untuk scroll */}
+            {/* Results Section - Target for scroll */}
             <section ref={resultsRef} className="space-y-6 pt-4">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div>
@@ -126,17 +126,17 @@ export default function HomePage() {
                             {!isHydrated
                                 ? "Loading..."
                                 : filteredPlaces.length > 0
-                                ? `${filteredPlaces.length} Tempat Bersejarah Ditemukan`
-                                : "Tidak ada tempat yang sesuai"}
+                                ? `${filteredPlaces.length} Historical Places Found`
+                                : "No matching places found"}
                         </h2>
                         <p className="text-muted-foreground">
                             {!isHydrated
-                                ? "Memuat data tempat bersejarah..."
+                                ? "Loading historical places data..."
                                 : filteredPlaces.length > 0
                                 ? totalPages > 1
-                                    ? `Halaman ${currentPage} dari ${totalPages} • ${currentPlaces.length} tempat ditampilkan`
-                                    : "Klik pada kartu untuk melihat detail lengkap"
-                                : "Coba ubah filter atau kata kunci pencarian"}
+                                    ? `Page ${currentPage} of ${totalPages} • ${currentPlaces.length} places displayed`
+                                    : "Click on a card to view full details"
+                                : "Try different keywords or remove filters"}
                         </p>
                     </div>
 
@@ -226,18 +226,17 @@ export default function HomePage() {
                     <div className="text-center py-12">
                         <div className="text-6xl mb-4">🏛️</div>
                         <h3 className="text-lg font-semibold mb-2">
-                            Tidak ada tempat yang ditemukan
+                            No places found
                         </h3>
                         <p className="text-muted-foreground mb-4">
-                            Coba gunakan kata kunci yang berbeda atau hapus
-                            filter
+                            Try using different keywords or remove filters
                         </p>
                         <Button
                             variant="outline"
                             onClick={() => window.location.reload()}
                             className="hover:bg-orange-50 hover:border-orange-300"
                         >
-                            Reset Pencarian
+                            Reset Search
                         </Button>
                     </div>
                 )}

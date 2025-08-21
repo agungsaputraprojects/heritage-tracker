@@ -6,7 +6,6 @@ import { Heart, MapPin, Shuffle, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useHeritageStoreHydrated } from "@/store/useHeritageStore";
-import { cn } from "@/lib/utils";
 import { useState } from "react";
 
 export function Header() {
@@ -26,8 +25,8 @@ export function Header() {
     };
 
     return (
-        <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-            <div className="max-w-6xl mx-auto px-4">
+        <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-md">
+            <div className="max-w-6xl mx-auto px-4 py-1">
                 <div className="flex h-16 items-center justify-between">
                     {/* Logo */}
                     <Link
@@ -42,7 +41,7 @@ export function Header() {
                                 Heritage Tracker
                             </h1>
                             <p className="text-xs text-muted-foreground truncate">
-                                Jelajahi Warisan Malaysia
+                                Explore Malaysia&apos;s Heritage
                             </p>
                         </div>
                         <div className="md:hidden">
@@ -65,7 +64,7 @@ export function Header() {
                                 className="relative"
                             >
                                 <Heart className="h-4 w-4 mr-2" />
-                                Sudah Dikunjungi
+                                Visited Places
                                 {visitedCount > 0 && (
                                     <Badge
                                         variant="destructive"
@@ -86,7 +85,7 @@ export function Header() {
                             className="ml-2"
                         >
                             <Shuffle className="h-4 w-4 mr-2" />
-                            Tempat Acak
+                            Random Place
                         </Button>
                     </nav>
 
@@ -117,7 +116,7 @@ export function Header() {
                                     onClick={() => setIsMobileMenuOpen(false)}
                                 >
                                     <Heart className="h-4 w-4 mr-2" />
-                                    Sudah Dikunjungi
+                                    Visited Places
                                     {visitedCount > 0 && (
                                         <Badge
                                             variant="destructive"
@@ -138,7 +137,7 @@ export function Header() {
                                 className="w-full justify-start"
                             >
                                 <Shuffle className="h-4 w-4 mr-2" />
-                                {isHydrated ? "Tempat Acak" : "Loading..."}
+                                {isHydrated ? "Random Place" : "Loading..."}
                             </Button>
                         </nav>
                     </div>

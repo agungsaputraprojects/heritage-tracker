@@ -1,6 +1,6 @@
 "use client";
 
-import { Heart, MapPin, Trophy, Calendar } from "lucide-react";
+import { Heart, MapPin, Trophy } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -50,12 +50,12 @@ export default function VisitedPage() {
     }, {} as Record<string, typeof visitedPlaces>);
 
     const categoryLabels = {
-        temple: "Kuil/Candi",
-        palace: "Istana",
-        fort: "Benteng",
-        monument: "Monumen",
-        site: "Situs",
-        museum: "Museum",
+        temple: "Temples",
+        palace: "Palaces",
+        fort: "Forts",
+        monument: "Monuments",
+        site: "Sites",
+        museum: "Museums",
     };
 
     const handleRandomPlace = () => {
@@ -71,13 +71,13 @@ export default function VisitedPage() {
             <section className="text-center space-y-4">
                 <div className="inline-flex items-center gap-2 bg-gradient-to-r from-red-100 to-pink-100 dark:from-red-950 dark:to-pink-950 px-4 py-2 rounded-full text-sm font-medium">
                     <Heart className="h-4 w-4 text-red-600" />
-                    Perjalanan Heritage Anda
+                    Your Heritage Journey
                 </div>
                 <h1 className="text-4xl md:text-5xl font-bold">
-                    Tempat yang Sudah Dikunjungi
+                    Visited Places
                 </h1>
                 <p className="text-lg text-muted-foreground">
-                    Koleksi tempat bersejarah yang telah Anda jelajahi
+                    Collection of historical places you&apos;ve explored
                 </p>
             </section>
 
@@ -88,7 +88,7 @@ export default function VisitedPage() {
                         <Card className="bg-gradient-to-br from-red-50 to-pink-50 dark:from-red-950/20 dark:to-pink-950/20 border-red-200 dark:border-red-800">
                             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                                 <CardTitle className="text-sm font-medium">
-                                    Total Dikunjungi
+                                    Total Visited
                                 </CardTitle>
                                 <Heart className="h-4 w-4 text-red-600" />
                             </CardHeader>
@@ -97,7 +97,7 @@ export default function VisitedPage() {
                                     {visitedPlaces.length}
                                 </div>
                                 <p className="text-xs text-muted-foreground">
-                                    dari {totalPlaces} tempat tersedia
+                                    out of {totalPlaces} places available
                                 </p>
                             </CardContent>
                         </Card>
@@ -127,7 +127,7 @@ export default function VisitedPage() {
                         <Card className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-950/20 dark:to-cyan-950/20 border-blue-200 dark:border-blue-800">
                             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                                 <CardTitle className="text-sm font-medium">
-                                    Kategori Terbanyak
+                                    Most Visited Category
                                 </CardTitle>
                                 <MapPin className="h-4 w-4 text-blue-600" />
                             </CardHeader>
@@ -147,8 +147,8 @@ export default function VisitedPage() {
                                         : "-"}
                                 </div>
                                 <p className="text-xs text-muted-foreground">
-                                    {Object.keys(placesByCategory).length} jenis
-                                    kategori
+                                    {Object.keys(placesByCategory).length}{" "}
+                                    category types
                                 </p>
                             </CardContent>
                         </Card>
@@ -159,24 +159,24 @@ export default function VisitedPage() {
                         <CardHeader>
                             <CardTitle className="flex items-center gap-2">
                                 <Trophy className="h-5 w-5 text-yellow-600" />
-                                Pencapaian Anda
+                                Your Achievements
                             </CardTitle>
                         </CardHeader>
                         <CardContent>
                             <div className="flex flex-wrap gap-2">
                                 {visitedPlaces.length >= 1 && (
                                     <Badge className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300">
-                                        🎯 Penjelajah Pemula
+                                        🎯 Beginner Explorer
                                     </Badge>
                                 )}
                                 {visitedPlaces.length >= 3 && (
                                     <Badge className="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300">
-                                        🗺️ Petualang Heritage
+                                        🗺️ Heritage Adventurer
                                     </Badge>
                                 )}
                                 {visitedPlaces.length >= 5 && (
                                     <Badge className="bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300">
-                                        🏛️ Pencinta Sejarah
+                                        🏛️ History Lover
                                     </Badge>
                                 )}
                                 {completionPercentage >= 50 && (
@@ -186,7 +186,7 @@ export default function VisitedPage() {
                                 )}
                                 {Object.keys(placesByCategory).length >= 3 && (
                                     <Badge className="bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-300">
-                                        🌟 Kategori Master
+                                        🌟 Category Master
                                     </Badge>
                                 )}
                                 {completionPercentage === 100 && (
@@ -212,7 +212,7 @@ export default function VisitedPage() {
                                             }
                                         </h2>
                                         <Badge variant="outline">
-                                            {categoryPlaces.length} tempat
+                                            {categoryPlaces.length} places
                                         </Badge>
                                     </div>
                                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -233,17 +233,17 @@ export default function VisitedPage() {
                 <div className="text-center py-12">
                     <div className="text-6xl mb-4">🏛️</div>
                     <h3 className="text-2xl font-semibold mb-2">
-                        Belum ada tempat yang dikunjungi
+                        No places visited yet
                     </h3>
                     <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-                        Mulai jelajahi warisan budaya Malaysia dengan menandai
-                        tempat-tempat yang sudah Anda kunjungi
+                        Start exploring Malaysia&apos;s cultural heritage by
+                        marking the places you&apos;ve visited
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Link href="/">
                             <Button size="lg">
                                 <MapPin className="h-4 w-4 mr-2" />
-                                Jelajahi Tempat
+                                Explore Places
                             </Button>
                         </Link>
                         <Button
@@ -252,7 +252,7 @@ export default function VisitedPage() {
                             onClick={handleRandomPlace}
                         >
                             <Heart className="h-4 w-4 mr-2" />
-                            Tempat Acak
+                            Random Place
                         </Button>
                     </div>
                 </div>

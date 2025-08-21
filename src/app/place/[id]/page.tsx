@@ -34,15 +34,15 @@ export default function PlaceDetailPage() {
                 <div className="text-center py-12">
                     <div className="text-6xl mb-4">🏛️</div>
                     <h3 className="text-2xl font-semibold mb-2">
-                        Tempat tidak ditemukan
+                        Place not found
                     </h3>
                     <p className="text-muted-foreground mb-6">
-                        Tempat bersejarah yang Anda cari tidak ada dalam
-                        database kami
+                        The historical place you&apos;re looking for
+                        doesn&apos;t exist in our database
                     </p>
                     <Button onClick={() => router.push("/")}>
                         <ArrowLeft className="h-4 w-4 mr-2" />
-                        Kembali ke Beranda
+                        Back to Home
                     </Button>
                 </div>
             </div>
@@ -60,10 +60,10 @@ export default function PlaceDetailPage() {
                 text: place.description,
                 url: window.location.href,
             });
-        } catch (error) {
+        } catch {
             // Fallback: copy to clipboard
             navigator.clipboard.writeText(window.location.href);
-            alert("Link berhasil disalin ke clipboard!");
+            alert("Link successfully copied to clipboard!");
         }
     };
 
@@ -149,7 +149,7 @@ export default function PlaceDetailPage() {
                             <div className="flex items-center gap-1">
                                 <Users className="h-4 w-4" />
                                 <span>
-                                    {formatNumber(place.visitCount)} pengunjung
+                                    {formatNumber(place.visitCount)} visitors
                                 </span>
                             </div>
                         </div>
@@ -164,7 +164,7 @@ export default function PlaceDetailPage() {
                     <Card>
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                             <CardTitle className="text-sm font-medium">
-                                Jam Operasional
+                                Opening Hours
                             </CardTitle>
                             <Clock className="h-4 w-4 text-muted-foreground" />
                         </CardHeader>
@@ -182,7 +182,7 @@ export default function PlaceDetailPage() {
                     <Card>
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                             <CardTitle className="text-sm font-medium">
-                                Harga Tiket
+                                Ticket Price
                             </CardTitle>
                             <Ticket className="h-4 w-4 text-muted-foreground" />
                         </CardHeader>
@@ -191,7 +191,7 @@ export default function PlaceDetailPage() {
                                 {formatCurrency(place.ticketPrice.local)}
                             </div>
                             <p className="text-xs text-muted-foreground mt-1">
-                                Asing:{" "}
+                                Foreign:{" "}
                                 {formatCurrency(place.ticketPrice.foreign)}
                             </p>
                         </CardContent>
@@ -200,7 +200,7 @@ export default function PlaceDetailPage() {
                     <Card>
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                             <CardTitle className="text-sm font-medium">
-                                Tahun Didirikan
+                                Year Established
                             </CardTitle>
                             <Calendar className="h-4 w-4 text-muted-foreground" />
                         </CardHeader>
@@ -211,7 +211,7 @@ export default function PlaceDetailPage() {
                             <p className="text-xs text-muted-foreground mt-1">
                                 {new Date().getFullYear() -
                                     place.yearEstablished}{" "}
-                                tahun lalu
+                                years ago
                             </p>
                         </CardContent>
                     </Card>
@@ -249,13 +249,13 @@ export default function PlaceDetailPage() {
                                 <div>
                                     <h3 className="font-semibold">
                                         {place.isVisited
-                                            ? "Sudah Dikunjungi"
-                                            : "Belum Dikunjungi"}
+                                            ? "Already Visited"
+                                            : "Not Visited Yet"}
                                     </h3>
                                     <p className="text-sm text-muted-foreground">
                                         {place.isVisited
-                                            ? "Anda telah mengunjungi tempat ini"
-                                            : "Tandai sebagai sudah dikunjungi setelah kunjungan"}
+                                            ? "You have visited this place"
+                                            : "Mark as visited after your visit"}
                                     </p>
                                 </div>
                             </div>
@@ -270,9 +270,7 @@ export default function PlaceDetailPage() {
                                         : ""
                                 }
                             >
-                                {place.isVisited
-                                    ? "Batalkan"
-                                    : "Tandai Dikunjungi"}
+                                {place.isVisited ? "Unmark" : "Mark as Visited"}
                             </Button>
                         </div>
                     </CardContent>
@@ -281,7 +279,7 @@ export default function PlaceDetailPage() {
                 {/* Description */}
                 <Card>
                     <CardHeader>
-                        <CardTitle>Tentang {place.name}</CardTitle>
+                        <CardTitle>About {place.name}</CardTitle>
                     </CardHeader>
                     <CardContent>
                         <p className="text-muted-foreground leading-relaxed">
@@ -293,7 +291,7 @@ export default function PlaceDetailPage() {
                 {/* Highlights */}
                 <Card>
                     <CardHeader>
-                        <CardTitle>Highlight & Daya Tarik</CardTitle>
+                        <CardTitle>Highlights & Attractions</CardTitle>
                     </CardHeader>
                     <CardContent>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -317,7 +315,7 @@ export default function PlaceDetailPage() {
                 {/* Location Info */}
                 <Card>
                     <CardHeader>
-                        <CardTitle>Informasi Lokasi</CardTitle>
+                        <CardTitle>Location Information</CardTitle>
                     </CardHeader>
                     <CardContent>
                         <div className="space-y-4">
@@ -329,7 +327,7 @@ export default function PlaceDetailPage() {
                                         {place.location.province}
                                     </p>
                                     <p className="text-sm text-muted-foreground">
-                                        Koordinat:{" "}
+                                        Coordinates:{" "}
                                         {place.location.coordinates.lat},{" "}
                                         {place.location.coordinates.lng}
                                     </p>
@@ -343,7 +341,7 @@ export default function PlaceDetailPage() {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
                     <Button size="lg" onClick={() => router.push("/")}>
                         <ArrowLeft className="h-4 w-4 mr-2" />
-                        Kembali ke Beranda
+                        Back to Home
                     </Button>
                     <Button
                         variant="outline"
@@ -351,7 +349,7 @@ export default function PlaceDetailPage() {
                         onClick={() => router.push("/visited")}
                     >
                         <Heart className="h-4 w-4 mr-2" />
-                        Lihat Tempat Dikunjungi
+                        View Visited Places
                     </Button>
                 </div>
             </div>

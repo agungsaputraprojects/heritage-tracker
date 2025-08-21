@@ -20,7 +20,7 @@ export function Pagination({
     const endItem = Math.min(currentPage * itemsPerPage, totalItems);
 
     const getVisiblePages = () => {
-        const pages = [];
+        const pages: (number | string)[] = [];
         const maxVisible = 5;
 
         if (totalPages <= maxVisible) {
@@ -28,12 +28,8 @@ export function Pagination({
                 pages.push(i);
             }
         } else {
-            let start = Math.max(1, currentPage - 2);
-            let end = Math.min(totalPages, start + maxVisible - 1);
-
-            if (end - start < maxVisible - 1) {
-                start = Math.max(1, end - maxVisible + 1);
-            }
+            const start = Math.max(1, currentPage - 2);
+            const end = Math.min(totalPages, start + maxVisible - 1);
 
             if (start > 1) {
                 pages.push(1);
@@ -63,12 +59,11 @@ export function Pagination({
         <div className="flex flex-col items-center gap-4 py-8">
             {/* Info Text */}
             <p className="text-sm text-muted-foreground">
-                Menampilkan{" "}
+                Showing{" "}
                 <span className="font-medium text-gray-900">{startItem}</span> -{" "}
-                <span className="font-medium text-gray-900">{endItem}</span>{" "}
-                dari{" "}
+                <span className="font-medium text-gray-900">{endItem}</span> of{" "}
                 <span className="font-medium text-gray-900">{totalItems}</span>{" "}
-                tempat bersejarah
+                historical places
             </p>
 
             {/* Pagination Controls */}
@@ -82,7 +77,7 @@ export function Pagination({
                     className="h-9 px-3 border-gray-200 hover:border-orange-300 hover:bg-orange-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
                 >
                     <ChevronLeft className="h-4 w-4 mr-1" />
-                    <span className="hidden sm:inline">Sebelumnya</span>
+                    <span className="hidden sm:inline">Previous</span>
                 </Button>
 
                 {/* Page Numbers */}
@@ -123,7 +118,7 @@ export function Pagination({
                     disabled={currentPage === totalPages}
                     className="h-9 px-3 border-gray-200 hover:border-orange-300 hover:bg-orange-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
                 >
-                    <span className="hidden sm:inline">Selanjutnya</span>
+                    <span className="hidden sm:inline">Next</span>
                     <ChevronRight className="h-4 w-4 ml-1" />
                 </Button>
             </div>
@@ -131,9 +126,7 @@ export function Pagination({
             {/* Quick Jump (optional for large datasets) */}
             {totalPages > 10 && (
                 <div className="flex items-center gap-2 text-sm">
-                    <span className="text-muted-foreground">
-                        Lompat ke halaman:
-                    </span>
+                    <span className="text-muted-foreground">Jump to page:</span>
                     <input
                         type="number"
                         min="1"
@@ -148,7 +141,7 @@ export function Pagination({
                         className="w-16 h-8 px-2 text-center border border-gray-200 rounded focus:border-orange-400 focus:ring-1 focus:ring-orange-100"
                     />
                     <span className="text-muted-foreground">
-                        dari {totalPages}
+                        of {totalPages}
                     </span>
                 </div>
             )}
