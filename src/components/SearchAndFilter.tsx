@@ -1,11 +1,10 @@
 "use client";
 
-import { Search, Filter } from "lucide-react";
+import { Search, Filter, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useHeritageStoreHydrated } from "@/store/useHeritageStore";
-import { getCategoryIcon } from "@/data/heritageData";
 
 const categories = [
     { value: "all", label: "Semua", icon: "🏛️" },
@@ -29,44 +28,57 @@ export function SearchAndFilter() {
     if (!isHydrated) {
         // Loading skeleton
         return (
-            <div className="space-y-4">
+            <div className="space-y-6 py-6">
                 <div className="relative">
-                    <div className="h-10 bg-gray-200 rounded animate-pulse"></div>
+                    <div className="h-12 bg-gray-200 rounded-xl animate-pulse"></div>
                 </div>
-                <div className="space-y-2">
-                    <div className="h-4 bg-gray-200 rounded w-20 animate-pulse"></div>
-                    <div className="flex flex-wrap gap-2">
-                        {Array.from({ length: 7 }).map((_, index) => (
-                            <div
-                                key={index}
-                                className="h-8 w-20 bg-gray-200 rounded animate-pulse"
-                            ></div>
-                        ))}
-                    </div>
+                <div className="flex flex-wrap gap-3">
+                    {Array.from({ length: 7 }).map((_, index) => (
+                        <div
+                            key={index}
+                            className="h-10 w-24 bg-gray-200 rounded-full animate-pulse"
+                        ></div>
+                    ))}
                 </div>
             </div>
         );
     }
 
     return (
-        <div className="space-y-4">
+        <div className="space-y-6 py-6">
             {/* Search Bar */}
-            <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-                <Input
-                    placeholder="Cari tempat bersejarah, kota, atau negeri..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pl-10"
-                />
+            <div className="relative group">
+                <div className="absolute inset-0 bg-gradient-to-r from-orange-200 to-red-200 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                <div className="relative">
+                    <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5 transition-colors group-focus-within:text-orange-500" />
+                    <Input
+                        placeholder="Cari tempat bersejarah, kota, atau negeri..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="pl-12 pr-12 h-12 text-base rounded-xl border-2 border-gray-200 focus:border-orange-400 focus:ring-2 focus:ring-orange-100 transition-all duration-200 bg-white/80 backdrop-blur-sm"
+                    />
+                    {searchQuery && (
+                        <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => setSearchQuery("")}
+                            className="absolute right-2 top-1/2 transform -translate-y-1/2 h-8 w-8 p-0 hover:bg-gray-100 rounded-full transition-colors"
+                        >
+                            <X className="h-4 w-4" />
+                        </Button>
+                    )}
+                </div>
             </div>
 
             {/* Category Filter */}
-            <div className="space-y-2">
-                <div className="flex items-center gap-2">
-                    <Filter className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-sm font-medium">Kategori:</span>
+            <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-2 text-sm font-medium text-gray-600">
+                        <Filter className="h-4 w-4" />
+                        <span>Kategori:</span>
+                    </div>
                 </div>
+
                 <div className="flex flex-wrap gap-2">
                     {categories.map((category) => (
                         <Button
@@ -78,9 +90,13 @@ export function SearchAndFilter() {
                             }
                             size="sm"
                             onClick={() => setSelectedCategory(category.value)}
-                            className="h-8"
+                            className={`h-10 px-4 rounded-full transition-all duration-200 ${
+                                selectedCategory === category.value
+                                    ? "bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg hover:shadow-xl transform hover:scale-105"
+                                    : "border-gray-200 hover:border-orange-300 hover:bg-orange-50 hover:text-orange-700 hover:scale-105"
+                            }`}
                         >
-                            <span className="mr-1">{category.icon}</span>
+                            <span className="mr-2">{category.icon}</span>
                             {category.label}
                         </Button>
                     ))}
@@ -89,37 +105,62 @@ export function SearchAndFilter() {
 
             {/* Active Filters */}
             {(searchQuery || selectedCategory !== "all") && (
-                <div className="flex items-center gap-2 flex-wrap">
-                    <span className="text-sm text-muted-foreground">
+                <div className="flex items-center gap-3 flex-wrap p-4 bg-gradient-to-r from-orange-50 to-red-50 dark:from-orange-950/20 dark:to-red-950/20 rounded-xl border border-orange-200 dark:border-orange-800">
+                    <span className="text-sm font-medium text-gray-600 flex items-center gap-2">
+                        <Filter className="h-4 w-4" />
                         Filter aktif:
                     </span>
-                    {searchQuery && (
-                        <Badge variant="secondary" className="gap-1">
-                            <Search className="h-3 w-3" />"{searchQuery}"
-                            <button
-                                onClick={() => setSearchQuery("")}
-                                className="ml-1 hover:bg-secondary-foreground/20 rounded-full p-0.5"
+
+                    <div className="flex flex-wrap gap-2">
+                        {searchQuery && (
+                            <Badge
+                                variant="secondary"
+                                className="gap-2 pl-3 pr-2 py-1.5 bg-white/80 backdrop-blur-sm border border-orange-200 text-orange-700"
                             >
-                                ×
-                            </button>
-                        </Badge>
-                    )}
-                    {selectedCategory !== "all" && (
-                        <Badge variant="secondary" className="gap-1">
-                            <Filter className="h-3 w-3" />
-                            {
-                                categories.find(
-                                    (c) => c.value === selectedCategory
-                                )?.label
-                            }
-                            <button
-                                onClick={() => setSelectedCategory("all")}
-                                className="ml-1 hover:bg-secondary-foreground/20 rounded-full p-0.5"
+                                <Search className="h-3 w-3" />
+                                <span>"{searchQuery}"</span>
+                                <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    onClick={() => setSearchQuery("")}
+                                    className="h-4 w-4 p-0 hover:bg-orange-200 rounded-full ml-1"
+                                >
+                                    <X className="h-3 w-3" />
+                                </Button>
+                            </Badge>
+                        )}
+
+                        {selectedCategory !== "all" && (
+                            <Badge
+                                variant="secondary"
+                                className="gap-2 pl-3 pr-2 py-1.5 bg-white/80 backdrop-blur-sm border border-orange-200 text-orange-700"
                             >
-                                ×
-                            </button>
-                        </Badge>
-                    )}
+                                <span>
+                                    {
+                                        categories.find(
+                                            (c) => c.value === selectedCategory
+                                        )?.icon
+                                    }
+                                </span>
+                                <span>
+                                    {
+                                        categories.find(
+                                            (c) => c.value === selectedCategory
+                                        )?.label
+                                    }
+                                </span>
+                                <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    onClick={() => setSelectedCategory("all")}
+                                    className="h-4 w-4 p-0 hover:bg-orange-200 rounded-full ml-1"
+                                >
+                                    <X className="h-3 w-3" />
+                                </Button>
+                            </Badge>
+                        )}
+                    </div>
+
                     {(searchQuery || selectedCategory !== "all") && (
                         <Button
                             variant="ghost"
@@ -128,7 +169,7 @@ export function SearchAndFilter() {
                                 setSearchQuery("");
                                 setSelectedCategory("all");
                             }}
-                            className="h-6 text-xs text-muted-foreground"
+                            className="h-8 text-xs text-orange-600 hover:text-orange-700 hover:bg-orange-100 rounded-full px-3"
                         >
                             Hapus semua
                         </Button>

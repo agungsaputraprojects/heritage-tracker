@@ -8,8 +8,14 @@ const nextConfig = {
                 port: "",
                 pathname: "/**",
             },
+            {
+                protocol: "https",
+                hostname: "picsum.photos",
+                port: "",
+                pathname: "/**",
+            },
         ],
-        domains: ["images.unsplash.com"],
+        domains: ["images.unsplash.com", "picsum.photos"],
         dangerouslyAllowSVG: true,
         contentDispositionType: "attachment",
         contentSecurityPolicy:
@@ -19,6 +25,11 @@ const nextConfig = {
     experimental: {
         esmExternals: false,
     },
+    // Enable standalone output for Docker
+    output: "standalone",
+    // Optimize for production
+    poweredByHeader: false,
+    compress: true,
 };
 
 export default nextConfig;
