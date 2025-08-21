@@ -101,18 +101,16 @@ export const useHeritageStore = create<HeritageStore>()(
         }),
         {
             name: "heritage-storage",
-            skipHydration: true, // Add this to prevent hydration mismatch
+            skipHydration: true,
         }
     )
 );
 
-// Custom hook to handle hydration safely
 export const useHeritageStoreHydrated = () => {
     const [isHydrated, setIsHydrated] = useState(false);
     const store = useHeritageStore();
 
     useEffect(() => {
-        // Rehydrate the store
         useHeritageStore.persist.rehydrate();
         setIsHydrated(true);
     }, []);

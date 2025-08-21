@@ -1,4 +1,3 @@
-// Create this file: src/components/PlaceholderImage.tsx
 "use client";
 
 import { useState } from "react";

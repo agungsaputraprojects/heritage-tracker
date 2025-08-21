@@ -18,18 +18,15 @@ export default function HomePage() {
     const { getFilteredPlaces, getRandomPlace, isHydrated } =
         useHeritageStoreHydrated();
 
-    // Ref for scroll target (results section)
     const resultsRef = useRef<HTMLElement>(null);
 
     const filteredPlaces = isHydrated ? getFilteredPlaces() : [];
 
-    // Calculate pagination
     const totalPages = Math.ceil(filteredPlaces.length / ITEMS_PER_PAGE);
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
     const endIndex = startIndex + ITEMS_PER_PAGE;
     const currentPlaces = filteredPlaces.slice(startIndex, endIndex);
 
-    // Reset to page 1 when search results change
     useEffect(() => {
         setCurrentPage(1);
     }, [filteredPlaces.length]);
@@ -48,9 +45,8 @@ export default function HomePage() {
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
 
-        // Scroll to results section, not to the top
         if (resultsRef.current) {
-            const yOffset = -20; // 20px offset from top of results section
+            const yOffset = -20;
             const y =
                 resultsRef.current.getBoundingClientRect().top +
                 window.pageYOffset +
@@ -65,7 +61,6 @@ export default function HomePage() {
 
     return (
         <div className="py-8 space-y-8">
-            {/* Hero Section */}
             <section className="text-center space-y-4">
                 <div className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-100 to-red-100 dark:from-orange-950 dark:to-red-950 px-4 py-2 rounded-full text-sm font-medium">
                     <Sparkles className="h-4 w-4 text-orange-600" />
@@ -81,10 +76,8 @@ export default function HomePage() {
                 </p>
             </section>
 
-            {/* Stats Overview */}
             <StatsOverview />
 
-            {/* Fun Feature Section */}
             <Card className="bg-gradient-to-r from-orange-50 to-red-50 dark:from-orange-950/20 dark:to-red-950/20 border-orange-200 dark:border-orange-800">
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2">
@@ -115,10 +108,8 @@ export default function HomePage() {
                 </CardContent>
             </Card>
 
-            {/* Search and Filter */}
             <SearchAndFilter />
 
-            {/* Results Section - Target for scroll */}
             <section ref={resultsRef} className="space-y-6 pt-4">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div>
@@ -166,7 +157,6 @@ export default function HomePage() {
                     )}
                 </div>
 
-                {/* Loading State */}
                 {!isHydrated && (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {Array.from({ length: 9 }).map((_, index) => (
@@ -185,7 +175,6 @@ export default function HomePage() {
                     </div>
                 )}
 
-                {/* Places Grid/List */}
                 {isHydrated && currentPlaces.length > 0 && (
                     <>
                         <div
@@ -208,7 +197,6 @@ export default function HomePage() {
                             ))}
                         </div>
 
-                        {/* Pagination */}
                         {totalPages > 1 && (
                             <Pagination
                                 currentPage={currentPage}
@@ -221,7 +209,6 @@ export default function HomePage() {
                     </>
                 )}
 
-                {/* No Results */}
                 {isHydrated && filteredPlaces.length === 0 && (
                     <div className="text-center py-12">
                         <div className="text-6xl mb-4">🏛️</div>

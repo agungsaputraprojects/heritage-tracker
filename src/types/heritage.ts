@@ -5,7 +5,7 @@ export interface HeritagePlace {
     image: string;
     location: {
         city: string;
-        province: string; // Will be used for Malaysian states/territories
+        province: string;
         coordinates: {
             lat: number;
             lng: number;

@@ -57,7 +57,6 @@ export function Pagination({
 
     return (
         <div className="flex flex-col items-center gap-4 py-8">
-            {/* Info Text */}
             <p className="text-sm text-muted-foreground">
                 Showing{" "}
                 <span className="font-medium text-gray-900">{startItem}</span> -{" "}
@@ -66,9 +65,7 @@ export function Pagination({
                 historical places
             </p>
 
-            {/* Pagination Controls */}
             <div className="flex items-center gap-2">
-                {/* Previous Button */}
                 <Button
                     variant="outline"
                     size="sm"
@@ -80,7 +77,6 @@ export function Pagination({
                     <span className="hidden sm:inline">Previous</span>
                 </Button>
 
-                {/* Page Numbers */}
                 <div className="flex items-center gap-1">
                     {getVisiblePages().map((page, index) => (
                         <div key={index}>
@@ -110,7 +106,6 @@ export function Pagination({
                     ))}
                 </div>
 
-                {/* Next Button */}
                 <Button
                     variant="outline"
                     size="sm"
@@ -123,7 +118,6 @@ export function Pagination({
                 </Button>
             </div>
 
-            {/* Quick Jump (optional for large datasets) */}
             {totalPages > 10 && (
                 <div className="flex items-center gap-2 text-sm">
                     <span className="text-muted-foreground">Jump to page:</span>

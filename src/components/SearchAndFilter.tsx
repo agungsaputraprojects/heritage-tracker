@@ -26,7 +26,6 @@ export function SearchAndFilter() {
     } = useHeritageStoreHydrated();
 
     if (!isHydrated) {
-        // Loading skeleton
         return (
             <div className="space-y-6 py-6">
                 <div className="relative">
@@ -46,7 +45,6 @@ export function SearchAndFilter() {
 
     return (
         <div className="space-y-6 py-6">
-            {/* Search Bar */}
             <div className="relative group">
                 <div className="absolute inset-0 bg-gradient-to-r from-orange-200 to-red-200 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
                 <div className="relative">
@@ -70,7 +68,6 @@ export function SearchAndFilter() {
                 </div>
             </div>
 
-            {/* Category Filter */}
             <div className="space-y-4">
                 <div className="flex items-center gap-3">
                     <div className="flex items-center gap-2 text-sm font-medium text-gray-600">
@@ -103,7 +100,6 @@ export function SearchAndFilter() {
                 </div>
             </div>
 
-            {/* Active Filters */}
             {(searchQuery || selectedCategory !== "all") && (
                 <div className="flex items-center gap-3 flex-wrap p-4 bg-gradient-to-r from-orange-50 to-red-50 dark:from-orange-950/20 dark:to-red-950/20 rounded-xl border border-orange-200 dark:border-orange-800">
                     <span className="text-sm font-medium text-gray-600 flex items-center gap-2">

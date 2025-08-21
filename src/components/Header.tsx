@@ -28,7 +28,6 @@ export function Header() {
         <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-md">
             <div className="max-w-6xl mx-auto px-4 py-1">
                 <div className="flex h-16 items-center justify-between">
-                    {/* Logo */}
                     <Link
                         href="/"
                         className="flex items-center space-x-2 min-w-0"
@@ -51,7 +50,6 @@ export function Header() {
                         </div>
                     </Link>
 
-                    {/* Desktop Navigation */}
                     <nav className="hidden md:flex items-center space-x-1">
                         <Link href="/visited">
                             <Button
@@ -76,7 +74,6 @@ export function Header() {
                             </Button>
                         </Link>
 
-                        {/* Random Place Button */}
                         <Button
                             variant="outline"
                             size="sm"
@@ -89,7 +86,6 @@ export function Header() {
                         </Button>
                     </nav>
 
-                    {/* Mobile Menu Button */}
                     <Button
                         variant="ghost"
                         size="sm"
@@ -100,7 +96,6 @@ export function Header() {
                     </Button>
                 </div>
 
-                {/* Mobile Navigation */}
                 {isMobileMenuOpen && (
                     <div className="md:hidden border-t">
                         <nav className="py-4 space-y-2">
@@ -128,7 +123,6 @@ export function Header() {
                                 </Button>
                             </Link>
 
-                            {/* Random Place Button Mobile */}
                             <Button
                                 variant="outline"
                                 size="sm"

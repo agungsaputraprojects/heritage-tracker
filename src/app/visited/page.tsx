@@ -40,7 +40,6 @@ export default function VisitedPage() {
             ? Math.round((visitedPlaces.length / totalPlaces) * 100)
             : 0;
 
-    // Group visited places by category
     const placesByCategory = visitedPlaces.reduce((acc, place) => {
         if (!acc[place.category]) {
             acc[place.category] = [];
@@ -67,7 +66,6 @@ export default function VisitedPage() {
 
     return (
         <div className="py-8 space-y-8">
-            {/* Header */}
             <section className="text-center space-y-4">
                 <div className="inline-flex items-center gap-2 bg-gradient-to-r from-red-100 to-pink-100 dark:from-red-950 dark:to-pink-950 px-4 py-2 rounded-full text-sm font-medium">
                     <Heart className="h-4 w-4 text-red-600" />
@@ -83,7 +81,6 @@ export default function VisitedPage() {
 
             {visitedPlaces.length > 0 ? (
                 <>
-                    {/* Progress Stats */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <Card className="bg-gradient-to-br from-red-50 to-pink-50 dark:from-red-950/20 dark:to-pink-950/20 border-red-200 dark:border-red-800">
                             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -154,7 +151,6 @@ export default function VisitedPage() {
                         </Card>
                     </div>
 
-                    {/* Achievement Badges */}
                     <Card>
                         <CardHeader>
                             <CardTitle className="flex items-center gap-2">
@@ -198,7 +194,6 @@ export default function VisitedPage() {
                         </CardContent>
                     </Card>
 
-                    {/* Visited Places by Category */}
                     <section className="space-y-6">
                         {Object.entries(placesByCategory).map(
                             ([category, categoryPlaces]) => (
@@ -229,7 +224,6 @@ export default function VisitedPage() {
                     </section>
                 </>
             ) : (
-                /* Empty State */
                 <div className="text-center py-12">
                     <div className="text-6xl mb-4">🏛️</div>
                     <h3 className="text-2xl font-semibold mb-2">

@@ -36,7 +36,6 @@
         --chart-5: 27 87% 67%;
         --radius: 0.5rem;
 
-        /* Custom heritage theme colors */
         --heritage-primary: 25 73% 55%; /* Warm brown */
         --heritage-secondary: 43 74% 66%; /* Golden yellow */
         --heritage-accent: 120 45% 35%; /* Forest green */
@@ -68,10 +67,9 @@
         --chart-4: 280 65% 60%;
         --chart-5: 340 75% 55%;
 
-        /* Custom heritage theme colors for dark mode */
-        --heritage-primary: 25 63% 45%; /* Darker warm brown */
-        --heritage-secondary: 43 64% 56%; /* Darker golden yellow */
-        --heritage-accent: 120 35% 25%; /* Darker forest green */
+        --heritage-primary: 25 63% 45%;
+        --heritage-secondary: 43 64% 56%;
+        --heritage-accent: 120 35% 25%;
     }
 }
 
@@ -85,7 +83,6 @@
     }
 }
 
-/* Custom utility classes for heritage theme */
 @layer utilities {
     .bg-heritage-primary {
         background-color: hsl(var(--heritage-primary));

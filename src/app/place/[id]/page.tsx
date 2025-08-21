@@ -61,7 +61,6 @@ export default function PlaceDetailPage() {
                 url: window.location.href,
             });
         } catch {
-            // Fallback: copy to clipboard
             navigator.clipboard.writeText(window.location.href);
             alert("Link successfully copied to clipboard!");
         }
@@ -69,7 +68,6 @@ export default function PlaceDetailPage() {
 
     return (
         <div className="min-h-screen">
-            {/* Hero Image Section */}
             <div className="relative h-[60vh] overflow-hidden">
                 <Image
                     src={place.image}
@@ -81,7 +79,6 @@ export default function PlaceDetailPage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
-                {/* Navigation & Actions */}
                 <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
                     <Button
                         variant="ghost"
@@ -120,7 +117,6 @@ export default function PlaceDetailPage() {
                     </div>
                 </div>
 
-                {/* Content Overlay */}
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                     <div className="container mx-auto">
                         <Badge
@@ -157,9 +153,7 @@ export default function PlaceDetailPage() {
                 </div>
             </div>
 
-            {/* Content Section */}
             <div className="container mx-auto px-4 py-8 space-y-8">
-                {/* Quick Info Cards */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <Card>
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -217,7 +211,6 @@ export default function PlaceDetailPage() {
                     </Card>
                 </div>
 
-                {/* Visit Status */}
                 <Card
                     className={cn(
                         "border-2",
@@ -276,7 +269,6 @@ export default function PlaceDetailPage() {
                     </CardContent>
                 </Card>
 
-                {/* Description */}
                 <Card>
                     <CardHeader>
                         <CardTitle>About {place.name}</CardTitle>
@@ -288,7 +280,6 @@ export default function PlaceDetailPage() {
                     </CardContent>
                 </Card>
 
-                {/* Highlights */}
                 <Card>
                     <CardHeader>
                         <CardTitle>Highlights & Attractions</CardTitle>
@@ -312,7 +303,6 @@ export default function PlaceDetailPage() {
                     </CardContent>
                 </Card>
 
-                {/* Location Info */}
                 <Card>
                     <CardHeader>
                         <CardTitle>Location Information</CardTitle>
@@ -337,7 +327,6 @@ export default function PlaceDetailPage() {
                     </CardContent>
                 </Card>
 
-                {/* Action Buttons */}
                 <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
                     <Button size="lg" onClick={() => router.push("/")}>
                         <ArrowLeft className="h-4 w-4 mr-2" />
